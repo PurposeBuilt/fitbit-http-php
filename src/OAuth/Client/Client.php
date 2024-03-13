@@ -34,6 +34,11 @@ class Client extends OAuthClient
         return $this->authorizator->getAuthUri();
     }
 
+    public function isAuthorized(): bool
+    {
+        return $this->authorizator->isAuthorized();
+    }
+
     //TODO:Here I can check if I'm authorized or not
     private function checkAuthorized()
     {

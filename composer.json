@@ -1,5 +1,5 @@
 {
-    "name": "namelivia/fitbit-http-php",
+    "name": "purposebuilt/fitbit-http-php",
     "description": "PHP SDK for accessing the Fitbit API",
     "license": "MIT",
     "keywords": ["fitbit", "sdk", "api"],

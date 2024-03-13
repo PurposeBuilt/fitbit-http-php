@@ -47,6 +47,10 @@ class Fitbit
     {
         $this->client->setAuthorizationCode($code);
     }
+    public function isAuthorized()
+    {
+        return $this->client->isAuthorized();
+    }
 
     public function get($url)
     {
