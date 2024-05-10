@@ -36,3 +36,4 @@ abstract class BasicEnum
         }
     }
 }
+use Illuminate\Contracts\Foundation\Application;
