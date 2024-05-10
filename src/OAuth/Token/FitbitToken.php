@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Namelivia\Fitbit\OAuth\Token;
 
 use kamermans\OAuth2\Token\RawToken;
-use kamermans\OAuth2\Token\TokenInterface;
 
-class FitbitToken extends RawToken implements Serializable
+
+class FitbitToken extends RawToken implements Serializable, FitbitTokenInterface
 {
     use FitbitTokenSerializer;
 
