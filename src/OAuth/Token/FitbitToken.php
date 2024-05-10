@@ -11,8 +11,6 @@ class FitbitToken extends RawToken implements Serializable, FitbitTokenInterface
 {
     use FitbitTokenSerializer;
 
-    protected $userId;
-
     /**
      * ExtendedToken constructor.
      *
