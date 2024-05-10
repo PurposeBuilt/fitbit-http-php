@@ -9,6 +9,8 @@ use GuzzleHttp\HandlerStack;
 use kamermans\OAuth2\Persistence\TokenPersistenceInterface;
 use Namelivia\Fitbit\OAuth\Config\Config;
 use Namelivia\Fitbit\OAuth\Constants\Constants;
+use Namelivia\Fitbit\OAuth\Token\FitbitTokenFactory;
+
 
 class MiddlewareFactory
 {
@@ -32,6 +34,7 @@ class MiddlewareFactory
             $this->config->toArray()
         );
         $middleware->setTokenPersistence($this->tokenPersistence);
+        $middleware->setTokenFactory(new FitbitTokenFactory());
 
         return $middleware;
     }
