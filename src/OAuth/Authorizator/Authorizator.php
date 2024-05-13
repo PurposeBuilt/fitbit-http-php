@@ -10,6 +10,9 @@ use Namelivia\Fitbit\OAuth\Constants\Constants;
 
 class Authorizator
 {
+    private Config $config;
+    private TokenPersistenceInterface $tokenPersistence;
+
     public function __construct(
         Config $config,
         TokenPersistenceInterface $tokenPersistence
