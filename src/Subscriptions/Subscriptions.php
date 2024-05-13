@@ -47,12 +47,12 @@ class Subscriptions
      * @param string $subscriptionId
      * @param string $subscriberId
      */
-    public function addAll(string $subscriptionId, string $subscriberId)
+    public function addAll(string $subscriptionId)
     {
         return $this->fitbit->post(implode('/', [
             'apiSubscriptions',
             $subscriptionId,
-        ]) . '.json?subscriberId=' . $subscriberId);
+        ]) . '.json');
     }
 
     /**
@@ -68,14 +68,13 @@ class Subscriptions
      */
     public function addCollection(
         string $subscriptionId,
-        string $subscriberId,
         CollectionPath $collectionPath
     ) {
         return $this->fitbit->post(implode('/', [
             $collectionPath,
             'apiSubscriptions',
             $subscriptionId,
-        ]) . '.json?subscriberId=' . $subscriberId);
+        ]) . '.json');
     }
 
     /**
@@ -84,12 +83,12 @@ class Subscriptions
      * @param string $subscriptionId
      * @param string $subscriberId
      */
-    public function removeAll(string $subscriptionId, string $subscriberId)
+    public function removeAll(string $subscriptionId)
     {
         return $this->fitbit->delete(implode('/', [
             'apiSubscriptions',
             $subscriptionId,
-        ]) . '.json?subscriberId=' . $subscriberId);
+        ]) . '.json');
     }
 
     /**
@@ -102,13 +101,12 @@ class Subscriptions
      */
     public function removeCollection(
         string $subscriptionId,
-        string $subscriberId,
         CollectionPath $collectionPath
     ) {
         return $this->fitbit->delete(implode('/', [
             $collectionPath,
             'apiSubscriptions',
             $subscriptionId,
-        ]) . '.json?subscriberId=' . $subscriberId);
+        ]) . '.json');
     }
 }
