@@ -18,12 +18,14 @@ class FitbitToken extends RawToken implements Serializable, FitbitTokenInterface
      * @param string $refreshToken
      * @param int    $expiresAt
      * @param string $userId
+     * @param string $scope
      */
-    public function __construct($accessToken = null, $refreshToken = null, $expiresAt = null, $userId = null)
+    public function __construct($accessToken = null, $refreshToken = null, $expiresAt = null, $userId = null, $scope = null)
     {
         // Call parent constructor to initialize common properties
         parent::__construct($accessToken, $refreshToken, $expiresAt);
         $this->userId = (string) $userId;
+        $this->scopes = (string) $scope;
     }
 
     /**
@@ -34,5 +36,14 @@ class FitbitToken extends RawToken implements Serializable, FitbitTokenInterface
     public function getUserId()
     {
         return $this->userId;
+    }
+    /**
+     * Gets the approved scopes.
+     *
+     * @return string|null
+     */
+    public function getScopes()
+    {
+        return $this->scopes;
     }
 }

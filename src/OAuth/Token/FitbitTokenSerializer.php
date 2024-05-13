@@ -31,6 +31,12 @@ trait FitbitTokenSerializer
      * @var string
      */
     private $userId;
+/**
+     * User ID.
+     *
+     * @var string
+     */
+    private $scopes;
 
     /**
      * Serialize Token data
@@ -43,6 +49,7 @@ trait FitbitTokenSerializer
             'refresh_token' => $this->refreshToken,
             'expires_at'    => $this->expiresAt,
             'user_id'       => $this->userId,
+            'scopes'       => $this->scopes,
         ];
     }
 
@@ -60,6 +67,7 @@ trait FitbitTokenSerializer
         $this->refreshToken = isset($data['refresh_token']) ? $data['refresh_token'] : null;
         $this->expiresAt = isset($data['expires_at']) ? $data['expires_at'] : null;
         $this->userId = isset($data['user_id']) ? $data['user_id'] : null;
+        $this->scopes = isset($data['scopes']) ? $data['scopes'] : null;
 
         return $this;
     }

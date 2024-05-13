@@ -12,6 +12,7 @@ class FitbitTokenFactory
         $refreshToken = null;
         $expiresAt = null;
         $userId = null;
+        $scopes = null;
 
         // Read "access_token" attribute
         if (isset($data['access_token'])) {
@@ -47,7 +48,10 @@ class FitbitTokenFactory
             $userId = $data['user_id'];
         }
 
+        if (isset($data['scopes'])) {
+            $userId = $data['scopes'];
+        }
 
-        return new FitbitToken($accessToken, $refreshToken, $expiresAt, $userId);
+        return new FitbitToken($accessToken, $refreshToken, $expiresAt, $userId, $scopes);
     }
 }
