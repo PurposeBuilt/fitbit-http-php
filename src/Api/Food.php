@@ -21,7 +21,7 @@ class Food
     private $waterGoals;
     private $waterLogs;
     private $timeSeries;
-    private $meal;
+    private $meals;
     private $favorites;
 
     public function __construct(Fitbit $fitbit)

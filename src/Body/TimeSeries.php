@@ -9,7 +9,7 @@ use Namelivia\Fitbit\Api\Fitbit;
 
 class TimeSeries
 {
-    private $client;
+    private $fitbit;
 
     public function __construct(Fitbit $fitbit)
     {

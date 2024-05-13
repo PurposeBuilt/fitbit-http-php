@@ -132,7 +132,7 @@ class Fitbit
         )->getBody()->getContents();
     }
 
-    public function userId(int $userId)
+    public function userId(string $userId)
     {
         $this->userId = $userId;
     }
