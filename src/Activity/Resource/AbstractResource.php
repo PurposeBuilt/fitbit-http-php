@@ -14,6 +14,7 @@ class AbstractResource extends BasicEnum
     const DISTANCE = 'distance';
     const FLOORS = 'floors';
     const ELEVATION = 'elevation';
+    const HEART = 'heart';
     const MINUTES_SEDENTARY = 'minutesSedentary';
     const MINUTES_LIGHTLY_ACTIVE = 'minutesLightlyActive';
     const MINUTES_FAIRLY_ACTIVE = 'minutesFairlyActive';

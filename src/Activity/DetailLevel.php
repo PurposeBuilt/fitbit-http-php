@@ -8,7 +8,9 @@ use Namelivia\Fitbit\BasicEnum;
 
 class DetailLevel extends BasicEnum
 {
+    const ONE_SECOND = '1sec';
     const ONE_MINUTE = '1min';
+    const FIVE_MINUTES = '5min';
     const FIFTEEN_MINUTES = '15min';
 
     private $detailLevel;

@@ -11,4 +11,9 @@ interface FitbitTokenInterface extends TokenInterface
      */
     public function getUserId();
 
+    /**
+     * @return string scopes
+     */
+    public function getScopes();
+
 }
