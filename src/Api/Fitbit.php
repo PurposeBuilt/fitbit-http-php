@@ -190,4 +190,14 @@ class Fitbit
     {
         return $this->subscriptions;
     }
+
+    public function cardioscore()
+    {
+        return $this->cardioscore;
+    }
+
+    public function breathingRate()
+    {
+        return $this->breathingRate;
+    }
 }
