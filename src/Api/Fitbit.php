@@ -23,6 +23,8 @@ class Fitbit
     private $body;
     private $food;
     private $subscriptions;
+    private $cardioscore;
+    private $breathingRate;
 
     public function __construct(Client $client)
     {
@@ -36,6 +38,8 @@ class Fitbit
         $this->body = new Body($this);
         $this->food = new Food($this);
         $this->subscriptions = new Subscriptions($this);
+        $this->cardioscore = new Cardioscore($this);
+        $this->breathingRate = new BreathingRate($this);
     }
 
     public function getAuthUri()
