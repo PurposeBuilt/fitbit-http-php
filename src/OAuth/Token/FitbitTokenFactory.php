@@ -14,6 +14,8 @@ class FitbitTokenFactory
         $userId = null;
         $scopes = null;
 
+        \Log::info('token data: '. json_encode($data, JSON_PRETTY_PRINT));
+
         // Read "access_token" attribute
         if (isset($data['access_token'])) {
             $accessToken = $data['access_token'];
@@ -48,8 +50,8 @@ class FitbitTokenFactory
             $userId = $data['user_id'];
         }
 
-        if (isset($data['scopes'])) {
-            $scopes = $data['scopes'];
+        if (isset($data['scope'])) {
+            $scopes = $data['scope'];
         }
 
         return new FitbitToken($accessToken, $refreshToken, $expiresAt, $userId, $scopes);
