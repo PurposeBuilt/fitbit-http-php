@@ -14,8 +14,6 @@ class FitbitTokenFactory
         $userId = null;
         $scopes = null;
 
-        \Log::info('token data: '. json_encode($data, JSON_PRETTY_PRINT));
-
         // Read "access_token" attribute
         if (isset($data['access_token'])) {
             $accessToken = $data['access_token'];
