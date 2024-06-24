@@ -49,7 +49,7 @@ class FitbitTokenFactory
         }
 
         if (isset($data['scopes'])) {
-            $userId = $data['scopes'];
+            $scopes = $data['scopes'];
         }
 
         return new FitbitToken($accessToken, $refreshToken, $expiresAt, $userId, $scopes);
