@@ -37,4 +37,23 @@ class HRV
             'all',
         ]) . '.json');
     }
+
+    /**
+     * Returns daily HRV summary (dailyRmssd, deepRmssd) for the specified date range.
+     * Uses the summary endpoint (without /all) which returns the daily aggregate values.
+     *
+     * @param Carbon $baseDate
+     * @param Carbon $endDate
+     */
+    public function getSummaryByDateRange(
+        Carbon $baseDate,
+        Carbon $endDate
+    ) {
+        return $this->fitbit->get(implode('/', [
+            'hrv',
+            'date',
+            $baseDate->format('Y-m-d'),
+            $endDate->format('Y-m-d'),
+        ]) . '.json');
+    }
 }
