@@ -87,6 +87,51 @@ class LogsTest extends TestCase
         );
     }
 
+    public function testListingAllLogsAfterADateFollowsPagination()
+    {
+        $firstPage = json_encode([
+            'activities' => [['logId' => 1], ['logId' => 2]],
+            'pagination' => ['next' => 'https://api.fitbit.com/1/user/-/activities/list.json?offset=100&next=1'],
+        ]);
+        $secondPage = json_encode([
+            'activities' => [['logId' => 3]],
+            'pagination' => ['next' => ''],
+        ]);
+
+        $this->fitbit->shouldReceive('get')
+            ->once()
+            ->with('activities/list.json?afterDate=2019-03-21&sort=asc&limit=100&offset=0')
+            ->andReturn($firstPage);
+        $this->fitbit->shouldReceive('getUrl')
+            ->once()
+            ->with('https://api.fitbit.com/1/user/-/activities/list.json?offset=100&next=1')
+            ->andReturn($secondPage);
+
+        $this->assertEquals(
+            [['logId' => 1], ['logId' => 2], ['logId' => 3]],
+            $this->logs->listAllAfter(Carbon::parse('2019-03-21'), 'asc', 100)
+        );
+    }
+
+    public function testListingAllLogsAfterADateWithASinglePage()
+    {
+        $onlyPage = json_encode([
+            'activities' => [['logId' => 1]],
+            'pagination' => ['next' => ''],
+        ]);
+
+        $this->fitbit->shouldReceive('get')
+            ->once()
+            ->with('activities/list.json?afterDate=2019-03-21&sort=asc&limit=100&offset=0')
+            ->andReturn($onlyPage);
+        $this->fitbit->shouldNotReceive('getUrl');
+
+        $this->assertEquals(
+            [['logId' => 1]],
+            $this->logs->listAllAfter(Carbon::parse('2019-03-21'), 'asc', 100)
+        );
+    }
+
     public function testListingLogsBeforeADate()
     {
         $this->fitbit->shouldReceive('get')

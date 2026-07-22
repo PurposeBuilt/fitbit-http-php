@@ -63,6 +63,15 @@ class Fitbit
         )->getBody()->getContents();
     }
 
+    // Fitbit paginates some list endpoints (e.g. activities/list.json) via a
+    // `pagination.next` field containing a full, already-qualified URL. get()
+    // always re-prepends baseUrl/userId, so it can't be used to follow those
+    // links — this bypasses the prefix entirely.
+    public function getUrl(string $absoluteUrl)
+    {
+        return $this->client->get($absoluteUrl)->getBody()->getContents();
+    }
+
     //TODO: Ugh! I hate doing this
     public function getNonUserEndpoint($url)
     {

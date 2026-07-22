@@ -78,6 +78,35 @@ class Logs
     }
 
     /**
+     * Retrieves the full list of a user's activity log entries after a given
+     * day, transparently following Fitbit's `pagination.next` cursor until
+     * exhausted. Unlike listAfter(), which returns the raw JSON for a single
+     * page, this decodes each page (required to read the pagination cursor)
+     * and returns the merged `activities` array.
+     *
+     * @param Carbon $date
+     * @param string $sort
+     * @param int $limit
+     */
+    public function listAllAfter(
+        Carbon $date,
+        string $sort = 'asc',
+        int $limit = 100
+    ): array {
+        $response = json_decode($this->listAfter($date, $sort, $limit), true);
+        $activities = $response['activities'] ?? [];
+        $nextUrl = $response['pagination']['next'] ?? '';
+
+        while (!empty($nextUrl)) {
+            $response = json_decode($this->fitbit->getUrl($nextUrl), true);
+            $activities = array_merge($activities, $response['activities'] ?? []);
+            $nextUrl = $response['pagination']['next'] ?? '';
+        }
+
+        return $activities;
+    }
+
+    /**
      * Retrieves a list of a user's activity log
      * entries before a given day with offset and limit using units in the unit system
      * which corresponds to the Accept-Language header provided.

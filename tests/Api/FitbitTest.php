@@ -38,6 +38,22 @@ class FitbitTest extends TestCase
         );
     }
 
+    public function testMakingAGetCallToAnAbsoluteUrl()
+    {
+        $this->client->shouldReceive('get')
+            ->once()
+            ->with('https://api.fitbit.com/1/user/-/activities/list.json?sort=asc&offset=100&limit=100')
+            ->andReturn($this->responseMock);
+        $this->responseMock->shouldReceive('getBody->getContents')
+            ->once()
+            ->with()
+            ->andReturn('responseContent');
+        $this->assertEquals(
+            'responseContent',
+            $this->fitbit->getUrl('https://api.fitbit.com/1/user/-/activities/list.json?sort=asc&offset=100&limit=100')
+        );
+    }
+
     public function testMakingAGetCallToANonUserEndpoint()
     {
         $this->client->shouldReceive('get')
